@@ -66,3 +66,11 @@ resource "huaweicloud_vpc_subnet" "database_2" {
 
   tags = local.common_tags
 }
+
+resource "huaweicloud_nat_gateway" "nat_1" {
+  name        = "nat-gw-dev"
+  description = "access internet for nodes"
+  spec        = "1"
+  vpc_id      = huaweicloud_vpc.default.id
+  subnet_id   = huaweicloud_vpc_subnet.public_1.id
+}
